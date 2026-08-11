@@ -24,6 +24,9 @@ class JsonlFileProcessor:
 
 
 def scrub_event(_: Any, __: str, event_dict: dict[str, Any]) -> dict[str, Any]:
+    # Other top-level fields (service, error_type, latency_ms, session_id...) are
+    # structured/enum values set by call sites, never raw user text, so only
+    # payload and event need scrubbing.
     payload = event_dict.get("payload")
     if isinstance(payload, dict):
         event_dict["payload"] = {
@@ -43,7 +46,7 @@ def configure_logging() -> None:
             structlog.processors.add_log_level,
             structlog.processors.TimeStamper(fmt="iso", utc=True, key="ts"),
             # TODO: Register your PII scrubbing processor here
-            # scrub_event,
+            scrub_event,
             structlog.processors.StackInfoRenderer(),
             structlog.processors.format_exc_info,
             JsonlFileProcessor(),
