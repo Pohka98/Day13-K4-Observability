@@ -4,7 +4,16 @@ slis:
   latency_p95_ms:
     objective: 3000
     target: 99.5
-    note: Replace with your group's target
+    note: >
+      Target 99.5% of requests with p95 latency under 3000ms, measured over a
+      rolling 28-day window. We use p95 instead of the mean because the mean
+      is skewed low by the many fast, simple requests and hides the slow
+      tail that a subset of users actually experience; p95 exposes that tail
+      while still tolerating rare, brief outliers (unlike p99/max, which
+      would make the SLO too sensitive to single-request noise). 99.5% gives
+      about a 0.5% error budget for latency, matched to the error_rate_pct
+      SLI's own 2% ceiling so latency and correctness failures are budgeted
+      on a comparable scale.
   error_rate_pct:
     objective: 2
     target: 99.0

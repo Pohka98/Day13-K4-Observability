@@ -1,19 +1,19 @@
 alerts:
-  - name: TODO_alert_1
-    severity: TODO
-    condition: TODO
+  - name: HighLatencyP95
+    severity: critical
+    condition: latency panel p95(latency_ms) > 3000 ms for 5m
     type: symptom-based
-    owner: TODO
+    owner: HaiTrieu
     runbook: docs/alerts.md#alert-1
-  - name: TODO_alert_2
-    severity: TODO
-    condition: TODO
+  - name: HighErrorRate
+    severity: critical
+    condition: errors panel error_rate_pct > 2% for 5m
     type: symptom-based
-    owner: TODO
+    owner: HaiTrieu
     runbook: docs/alerts.md#alert-2
-  - name: TODO_alert_3
-    severity: TODO
-    condition: TODO
+  - name: DailyCostBudgetExceeded
+    severity: warning
+    condition: cost panel total(cost_usd) > 2.5 USD for the day
     type: symptom-based
-    owner: TODO
+    owner: HaiTrieu
     runbook: docs/alerts.md#alert-3
