@@ -5,7 +5,7 @@
 | Mục | Giá trị |
 | --- | --- |
 | Host | `https://jp.cloud.langfuse.com` (region JP) |
-| Public key | `pk-lf-94f1f2f4-e676-4e42-87cc-c763b12061ab` |
+| Public key | `*****` |
 | Secret key | chỉ nằm trong `.env` local, **không commit** |
 | `auth_check()` | `True` |
 | `/health` → `tracing_enabled` | `True` |
